@@ -2,10 +2,13 @@
 // All elements drawn within 'app_wrapper' 
 // Written by Matt Cocca
 
+const app_wrapper = document.getElementById('app_wrapper')
+
 // Globals for game state
 var gameGrid = []
 var run = false
 const cols = 20 
+const rows = calculate_num_rows(app_wrapper, cols)
 
 
 function calculate_num_rows(element, x){
@@ -27,9 +30,6 @@ function generate_cell_style(element, x){
   return cell_style
 }
 
-const app_wrapper = document.getElementById('app_wrapper')
-const cellButtonStyle = generate_cell_style(app_wrapper, cols)
-const rows = calculate_num_rows(app_wrapper, cols)
 
 function generate_grid(x,y){
   var grid = []
@@ -45,6 +45,7 @@ function generate_grid(x,y){
 
 
 function init_button_grid(grid, element){
+  const cellButtonStyle = generate_cell_style(app_wrapper, cols)
   width = grid.length
   height = grid[0].length
 
