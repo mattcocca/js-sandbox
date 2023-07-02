@@ -65,7 +65,7 @@ function init_button_grid(grid, element){
     })
     button.addEventListener('mouseleave', () => {
       if (gameGrid[button.id%width][~~(button.id/width)]){
-        button.style.backgroundColor = ""
+        button.style.backgroundColor = "#12a33b"
       }
       else {
         button.style.backgroundColor = "#b8b8b8"
