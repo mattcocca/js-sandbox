@@ -5,15 +5,31 @@
 // Globals for game state
 var gameGrid = []
 var run = false
+const cols = 20 
 
-const cellButtonStyle = `
-border: none;
-border-radius: 3px; 
-background-color: #b8b8b8;
-padding: 7px 7px;
-text-decoration: none;
-margin: 1px 1px
-`
+
+function calculate_num_rows(element, x){
+  var cell_size = element.clientWidth/x
+  num_rows = ((element.clientHeight)/cell_size)-2
+  return num_rows
+}
+
+function generate_cell_style(element, x){
+  var cell_size = (element.clientWidth-20)/(2*x)
+  var cell_style = `
+  border: none;
+  border-radius: 3px; 
+  background-color: #b8b8b8;
+  padding: ${cell_size-1}px ${cell_size-1}px;
+  text-decoration: none;
+  margin: 1px 1px
+  `
+  return cell_style
+}
+
+const app_wrapper = document.getElementById('app_wrapper')
+const cellButtonStyle = generate_cell_style(app_wrapper, cols)
+const rows = calculate_num_rows(app_wrapper, cols)
 
 function generate_grid(x,y){
   var grid = []
@@ -139,9 +155,8 @@ function runloop() {
 }
 
 
-const app_wrapper = document.getElementById('app_wrapper')
-
-gameGrid = generate_grid(30,20)
+app_wrapper.append(document.createElement('br'))
+gameGrid = generate_grid(cols,rows)
 init_button_grid(gameGrid, app_wrapper)
 app_wrapper.append(document.createElement('br'))
 init_run_button (app_wrapper)
