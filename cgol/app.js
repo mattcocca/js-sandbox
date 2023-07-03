@@ -81,11 +81,49 @@ function init_button_grid(grid, element){
 
 
 function init_run_button(element){
+  var runButtonStyle = `
+  border: none;
+  border-radius: 3px; 
+  background-color: #135ead;
+  height: 40px;
+  width: 100px;
+  text-decoration: none;
+  margin: 1px 1px
+  font-family: Arial;
+  color: #ebebeb;
+  font-size: 30px;
+  `
+
   const button = document.createElement('button')
-  button.innerText = "RUN/STOP"
+  button.style.cssText = runButtonStyle
+  button.innerText = "RUN"
   button.addEventListener('click', () => {
-    if (run) {run = false}
-    else {run = true}
+    if (run) {
+      run = false
+      button.style.backgroundColor = '#135ead'
+      button.innerText = "RUN"
+    }
+    else {
+      run = true
+      button.style.backgroundColor = '#871e23'
+      button.innerText = "STOP"
+    }
+  })
+  button.addEventListener('mouseenter', () => {
+    if (run){
+      button.style.backgroundColor = "#BA5156"
+    }
+    else{
+      button.style.backgroundColor = '#4691E0'
+    }
+  })
+  button.addEventListener('mouseleave', () => {
+    if (run){
+      button.style.backgroundColor = "#871e23"
+    }
+    else {
+      button.style.backgroundColor = "#135ead"
+    }
   })
   element.appendChild(button)
 }
